@@ -3,8 +3,6 @@ let fileData = require("./fileData");
 let textMetrics = require("./textMetrics");
 
 
-
-
 /* fileData.getFileAsString('chapter1.txt').then((chapter1_0) => {
     return textMetrics.simplify(chapter1);
 }).then((chapter1) => {

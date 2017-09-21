@@ -1,0 +1,12 @@
+{
+  "name": "calculate_module-example",
+  "version": "0.0.1",
+  "description": "A simple calculate module",
+  "main": "app.js",
+  "scripts": {
+    "start":"node Calculate_Module.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pintaigao He",
+  "license": "MIT"
+}

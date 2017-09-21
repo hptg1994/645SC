@@ -3,13 +3,13 @@ const file = require('./fileData');
 module.exports = {
     simplify: (text) => {
         return new Promise((fulfill, reject) => {
-            if (text === undefine || typeof text != "string") {
+            if (text === undefine || typeof text !== "string") {
                 reject("Wrong input data in textMetrics.simplify");
                 return;
             }
             text = text.toLowerCase();
-            text = text.replace(/[^a-z0-9]/g, '');
             text = text.replace(/\n\t/g, ' ');
+            text = text.replace(/[^a-z0-9]/g, '');
             fulfill(text);
         });
     },
@@ -19,7 +19,7 @@ module.exports = {
             if (text === undefined || typeof text != "string") {
                 reject("Wrong text input in textMetrics.createMetrics");
             }
-        
+
             let textInfo = {
                 totalLetters: 0,
                 totalWords: 0,

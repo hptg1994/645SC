@@ -9,7 +9,6 @@ module.exports = {
                     reject(error);
                     return;
                 }
-                console.log(data);
                 fulfill(data);
             });
         });

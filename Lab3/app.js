@@ -15,10 +15,10 @@ if(fs.exists("./chapter1.result.json")){
         console.log(error);
     });
 }else{
-    fileData.getFileAsString("chapter1.text").then((chapter1_0) => {
+    fileData.getFileAsString("chapter1.txt").then((chapter1_0) => {
         return textMetrics.simplify(chapter1_0);
     }).then((chapter1_1) =>{ 
-        fileData.saveStringToFile("chapter1.debug.text",chapter1_1);
+        fileData.saveStringToFile("chapter1.debug.tet",chapter1_1);
         return textMetrics.createMetrics(chapter1_1);
     }).then((chapter1_2) => {
         console.log(chapter1_2);

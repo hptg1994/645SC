@@ -8,8 +8,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Pintaigao He",
-  "license": "MIT",
-  "dependencies": {
-    "bluebird": "^3.5.0"
-  }
+  "license": "MIT"
 }

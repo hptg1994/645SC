@@ -1,73 +1,52 @@
-const fs = require('fs');
+const bluebird = require('bluebird');
+const Promise = bluebird.Promise;
+const fs = bluebird.promisifyAll(require("fs"));
 
 module.exports = {
-    getFileAsString: (path) => {
-        return new Promise((fulfill, reject) => {
-            if (!path) reject("No file found");
-            fs.readFile(path, (error, data) => {
-                if (error) {
-                    reject(error);
-                    return;
-                }
-                fulfill(data);
-            });
+
+    getFileAsString: async(path) => {
+        if (!path) {
+            throw "No file found";
+            return;
+        }
+        let result = await fs.readFileAsync(path, "utf-8").then((data) => {
+            return data;
         });
+        return result;
     },
-    getFileAsJSON: (path) => {
-        return new Promise((fulfill, reject) => {
-            if (!path) reject("No path founf");
-            fs.readFile(path, (error, data) => {
-                if (error) {
-                    reject(error);
-                    return;
-                }
-                try {
-                    let jsonData = JSON.parse(data);
-                    fulfill(jsonData);
-                } catch (parsingError) {
-                    reject(parsingError);
-                }
-            });
-        });
-    },
-    saveStringToFile: (path, text) => {
-        return new Promise((fufill, reject) => {
-            if (!path) throw "No path provided";
-            fs.writeFile(path, text, (error, data) => {
-                if (error) {
-                    reject(error);
-                    return;
-                }
-                fulfill(data);
-            });
-        });
-    },
-    saveJSONToFile: (path, obj) => {
-        return new Promise((fulfill, reject) => {
-            if (!path) throw "No Path Provided";
-            if (typeof obj != 'object') throw "Type of object wrong";
+    getFileAsJSON: async(path) => {
+        if (!path) {
+            throw "No file found";
+            return;
+        }
+        let result = await fs.readFileAsync(path, "utf-8").then((data) => {
             try {
-                let jsonData = JSON.stringify(obj, null, 4);
-                fs.writeFile(path, jsonData, (error, data) => {
-                    if (error) {
-                        reject(error);
-                        return;
-                    }
-                    fulfill(jsonData);
-                });
+                let jsonData = JSON.parse(data);
+                return jsonData;
             } catch (parsingError) {
-                reject(parsingError);
+                throw (parsingError);
             }
         });
+        return result;
     },
-    saveStringToFile: (path, text) => {
-        return new Promise((fulfill, reject) => {
-            if (!path) throw "No path Provide";
-            if (typeof obj != 'string') throw "Type of object is not String";
-            FS.writeFile(path, text, (error, data) => {
-                if (error) reject(error);
-                fufill(data);
-            });
+    saveStringToFile: async(path, text) => {
+        if (!path) {
+            throw ("No path provided");
+            return;
+        }
+        let result = await fs.writeFileAsync(path, text).then((data) => {
+            return data;
         });
+        return result;
+    },
+    saveJSONToFile: async(path, obj) => {
+        if (!path) {
+            throw ("No path provided");
+            return;
+        }
+        let result = await fs.writeFileAsync(path, JSON.stringify(obj, null, 4)).then((data) => {
+            return data;
+        });
+        return result;
     }
 }

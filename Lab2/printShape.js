@@ -1,5 +1,3 @@
-
-
 module.exports = {
     printTriangle: function (nums) {
         if (nums === undefined || typeof nums !== "number") {

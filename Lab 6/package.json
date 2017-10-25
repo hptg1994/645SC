@@ -1,0 +1,15 @@
+{
+  "name": "lab6_cs546",
+  "version": "1.0.0",
+  "description": "This is the lab6 of CS546",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pintaigao He",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}

@@ -12,36 +12,40 @@ let exportedMethods = {
         });
     },
     getPostsByTag(tag) {
-        if (!tag) 
+        if (!tag)
             return Promise.reject("No tag provided");
-        
+
         return posts().then((postCollection) => {
             return postCollection
-                .find({tags: tag})
+                .find({
+                    tags: tag
+                })
                 .toArray();
         });
     },
     getPostById(id) {
         return posts().then((postCollection) => {
             return postCollection
-                .findOne({_id: id})
+                .findOne({
+                    _id: id
+                })
                 .then((post) => {
-                    if (!post) 
+                    if (!post)
                         throw "Post not found";
                     return post;
                 });
         });
     },
     addPost(title, body, tags, posterId) {
-        if (typeof title !== "string") 
+        if (typeof title !== "string")
             return Promise.reject("No title provided");
-        if (typeof body !== "string") 
+        if (typeof body !== "string")
             return Promise.reject("I aint got nobody!");
 
         if (!Array.isArray(tags)) {
             tags = [];
         }
-        
+
         return posts().then((postCollection) => {
             return users
                 .getUserById(posterId)
@@ -71,10 +75,12 @@ let exportedMethods = {
     removePost(id) {
         return posts().then((postCollection) => {
             return postCollection
-                .removeOne({_id: id})
+                .removeOne({
+                    _id: id
+                })
                 .then((deletionInfo) => {
                     if (deletionInfo.deletedCount === 0) {
-                        throw(`Could not delete post with id of ${id}`)
+                        throw (`Could not delete post with id of ${id}`)
                     } else {}
                 });
         });

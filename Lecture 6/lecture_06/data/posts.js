@@ -11,7 +11,9 @@ let exportedMethods = {
     },
     getPostById(id) {
         return posts().then((postCollection) => {
-            return postCollection.findOne({ _id: id }).then((post) => {
+            return postCollection.findOne({
+                _id: id
+            }).then((post) => {
                 if (!post) throw "Post not found";
                 return post;
             });
@@ -41,10 +43,12 @@ let exportedMethods = {
     },
     removePost(id) {
         return posts().then((postCollection) => {
-            return postCollection.removeOne({ _id: id }).then((deletionInfo) => {
+            return postCollection.removeOne({
+                _id: id
+            }).then((deletionInfo) => {
                 if (deletionInfo.deletedCount === 0) {
                     throw (`Could not delete post with id of ${id}`)
-                } else { }
+                } else {}
             });
         });
     },
@@ -61,7 +65,9 @@ let exportedMethods = {
                         }
                     };
 
-                    return postCollection.updateOne({ _id: id }, updatedPost).then((result) => {
+                    return postCollection.updateOne({
+                        _id: id
+                    }, updatedPost).then((result) => {
                         return this.getPostById(id);
                     });
                 });

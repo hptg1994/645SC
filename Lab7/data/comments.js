@@ -7,38 +7,42 @@ let exportedMethods = {
         return comments().then((commentCollection) => {
             return commentCollection
                 .findOne({
-                    comments:{
-                        $elemMatch:{_id:id}
+                    comments: {
+                        $elemMatch: {
+                            _id: id
+                        }
                     }
                 });
         }).then(recipe => {
-            let comment = recipe.comments.find(comment => {
+            let comment = recipe.comments.find((comment) => {
                 return comment._id == id
             });
             return {
-                _id:id,
-                recipeId : recipe._id,
-                recipeTitle : recipe.title,
-                poster:comment.poster,
-                comment:comment.comment
+                _id: id,
+                recipeId: recipe._id,
+                recipeTitle: recipe.title,
+                poster: comment.poster,
+                comment: comment.comment
             }
         }).catch((error) => {
             throw "Can't not find this comment";
         })
     },
 
-    getCommentByRecipesId(id){
+    getCommentByRecipesId(id) {
         return comments().then((commentCollection) => {
-            return commentCollection.findOne({_id:id}).then((recipe) => {
+            return commentCollection.findOne({
+                _id: id
+            }).then((recipe) => {
                 let comment = recipe.comments;
                 let showingComment = [];
-                for(let i = 0;i< comment.length;i++){
+                for (let i = 0; i < comment.length; i++) {
                     showingComment.push({
-                        _id : comment[i]._id,
-                        recipeId : id,
-                        recipeTitle : recipe.title,
-                        poster:comment[i].poster,
-                        comment:comment[i].comment
+                        _id: comment[i]._id,
+                        recipeId: id,
+                        recipeTitle: recipe.title,
+                        poster: comment[i].poster,
+                        comment: comment[i].comment
                     });
                 }
                 return showingComment;
@@ -47,6 +51,7 @@ let exportedMethods = {
             })
         })
     },
+
     addComment(recipeId, poster, commentDetail) {
         return comments().then((commentCollection) => {
             let newComment = {
@@ -76,31 +81,29 @@ let exportedMethods = {
                             _id: id
                         }
                     }
-                },
-                false,
-                true
-            ).then(() => {}).catch((error => {
+                }, {
+                    multi: true
+                }
+
+            ).catch((error => {
                 throw "Can't remove this Comment"
             }));
 
         });
     },
 
+    // "cannot use the part (comments of comments.comment) to traverse the element if not add "$".
     updateComment(id, updateCommentInfo) {
-
         return comments().then((commentsCollection) => {
             if (updateCommentInfo.poster) {
                 return commentCollection.update({
-                            _id: id,
-                            "comments,_id": updateCommentInfo.id
-                        }, {
-                            $set: {
-                                "comments.$.poster": updateCommentInfo.poster
-                            }
-                        },
-                        false,
-                        true)
-                    .then((updateInfo) => {
+                        _id: id,
+                        "comments._id": updateCommentInfo.id
+                    }, {
+                        $set: {
+                            "comments.$.poster": updateCommentInfo.poster
+                        }
+                    }).then((updateInfo) => {
                         if (updateCommentInfo.comment) {
                             return commentsCollection.update({
                                 _id: id,
@@ -109,7 +112,7 @@ let exportedMethods = {
                                 $set: {
                                     "comments.$.comment": updateCommentInfo.comment
                                 }
-                            }, false, true);
+                            });
                         }
                     })
             } else if (updateCommentInfo.comment) {
@@ -120,15 +123,12 @@ let exportedMethods = {
                     $set: {
                         "comments.$.comment": updateCommentInfo.comment
                     }
-                }, false, true);
+                });
             }
         }).then((updateInfo) => {
-            return this.getCommentById(updateCommentInfo.id);
-        }).catch(error => {
-            throw "Unable to update this comment"
-        })
-
-    },
+            return this.getCommentByCommentId(updateCommentInfo.id);
+        });
+    }
 }
 
 module.exports = exportedMethods;

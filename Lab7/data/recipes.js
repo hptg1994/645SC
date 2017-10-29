@@ -41,7 +41,7 @@ let exportedMethods = {
 
     removeRecipes(id) {
         return recipes().then((recipesCollections) => {
-            return recipesCollections.removeOne({
+            return recipesCollections.remove({
                 _id: id
             }).then((deletionInfo) => {
                 if (deletionInfo.deletedCount === 0) {
@@ -71,31 +71,7 @@ let exportedMethods = {
                 });
             });
         });
-    },
-    // addCommentToRecipes(userId, postId, postTitle) {
-    //     return this.getRecipesById(id).then((currentRecipes) => {
-
-    //         return recipesCollections.updateOne({ _id: id }, {
-    //             $addToSet: {
-    //                 posts: {
-    //                     id: postId,
-    //                     title: postTitle
-    //                 }
-    //             }
-    //         });
-    //     });
-    // },
-    // removeCommentFromRecipes(userId, postId) {
-    //     return this.getUserById(id).then((currentUser) => {
-    //         return recipesCollections.updateOne({ _id: id }, {
-    //             $pull: {
-    //                 posts: {
-    //                     id: postId
-    //                 }
-    //             }
-    //         });
-    //     });
-    // }
+    }
 }
 
 module.exports = exportedMethods;

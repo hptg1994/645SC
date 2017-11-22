@@ -1,0 +1,51 @@
+<div id="checker">
+	<form method="post" class="input">
+		<label>Input String: </label>
+		<br />
+		<textarea name="inputText" placeholder="Is it a palindrome?" id="inputText">{{input}}</textarea>
+		<div id="submit">
+			<button type="submit"> Submit </button>
+		</div>
+	</form>
+
+	{{#if error }}
+	<div id="error-box">
+		<div  class="alert alert-danger">
+			<p>{{error}}</p>
+		</div>
+	</div>
+	{{/if}}
+
+	{{#if result }}
+	<div id="result-box">
+		<div class="alert alert-success">
+			<p>{{result}}</p>
+		</div>
+	</div>
+	{{/if}}
+</div>
+
+<section class ="list">
+	<div class="is-palindrome">
+		<h2>Palindromes</h2>
+		<section>
+			<ul id="palindromes">
+				{{#each palindromes}}
+				<li>{{this}}</li>
+				{{/each}}
+			</ul>
+		</section>
+	</div>
+
+	<div class="not-palindrome">
+		<h2>Not a Palindrome</h2>
+		<section>
+			<ul id="not-palindrome">
+				{{#each notPalindrome}}
+				<li>{{this}}</li>
+				{{/each}}
+			</ul>
+		</section>
+	</div>
+</section>
+

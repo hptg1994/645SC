@@ -11,6 +11,10 @@ async function completeAllTask(alltask) {
 }
 
 const main = async() => {
+    
+    //这个是用来操作命令行的
+    const db = await connection();
+
     const createTask = await todoItems.createTask("Ponder Dinosaurs", "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?").then((task) => {
         firstId = task._id;
         return todoItems.createTask("Play Pokemon with Twitch TV", "Should we revive Helix?")
@@ -35,7 +39,6 @@ const main = async() => {
         console.log(error);
     });
 
-    const db = await connection();
     // To TA : If you want to remove my database from your MongoDB, please uncomment the below statement
     // await db.dropCollection('Pintaigao_He_lab4');
     db.close();

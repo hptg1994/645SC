@@ -3,6 +3,7 @@ const recipes = mongoCollections.RecipesAndComment;
 const uuid = require('node-uuid');
 
 let exportedMethods = {
+    
     getAllRecipes() {
         return recipes().then((recipesCollections) => {
             return recipesCollections.find({}, {}).toArray();

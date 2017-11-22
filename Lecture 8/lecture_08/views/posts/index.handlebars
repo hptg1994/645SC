@@ -1,0 +1,10 @@
+<section>
+  <h1>Posts</h1>
+  {{#each postsSingle}}  
+    <article class="postsSingle">
+      <h2><a href="/posts/{{_id}}">{{title}}</a></h2>
+      {{!-- body 肯定是 postsSingle 里面的 body:.... --}}
+      <p>{{body}}</p> 
+    </article>
+  {{/each}}
+</section>

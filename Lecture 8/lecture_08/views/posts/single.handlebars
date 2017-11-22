@@ -1,0 +1,17 @@
+<article class="postHTML">
+  <h1>{{ postHTML.title}}</h1>
+  
+   {{!-- <h1>Random</h1> --}}
+  <address>Posted by <a href="" rel="author">{{postHTML.poster.name}}</a></address>
+  <p>{{ postHTML.body }}</p>
+
+  {{#if postHTML.tags.length}}
+    <h3>Tags</h3>
+    <ul>
+      {{#each postHTML.tags}}
+        <li><a href="/posts/tag/{{this}}">{{this}}</a></li>
+      {{/each}}
+    </ul>
+  {{/if}}
+</article>
+

@@ -1,7 +1,7 @@
 const postRoutes = require("./posts");
 const userRoutes = require("./users");
 
-const constructorMethod = (app) => {
+const constructorMethod = function(app){
     app.use("/posts", postRoutes);
     app.use("/users", userRoutes);
 

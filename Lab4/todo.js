@@ -1,5 +1,6 @@
-const mongoCollections = require("./mongoCollections");
-const todoItems  = mongoCollections.TodoItem;
+// const mongoCollections = require("./mongoCollections");
+// const todoItems  = mongoCollections.TodoItem;
+const todoItems = require("./mongoCollections").TodoItem;
 const uuidv1 = require('uuid/v1');
 
 module.exports = {
@@ -52,8 +53,8 @@ module.exports = {
             completedAt: new Date().getTime()
         };
         const updateInfo = await TaskCollection.updateOne({
-            _id: taskId,
-            completed: false
+            _id: taskId
+            // completed: false
         }, {
             $set: {
                 completed: true,
@@ -70,7 +71,7 @@ module.exports = {
         if (!id) throw "You must provide an id to search for";
 
         const TaskCollection = await todoItems();
-        const deleteTask = await TaskCollection.removeOne({
+        const deleteTask = await TaskCollection.remove({
             _id: id
         });
         if (deleteTask.deletedCount === 0){
@@ -79,3 +80,4 @@ module.exports = {
     }
 
 }
+

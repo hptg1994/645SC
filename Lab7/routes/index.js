@@ -1,5 +1,7 @@
 const recipesRoute = require("./recipes");
 const commentsRoute = require("./comments");
+// const express = require("express");
+// const app = express();
 
 const constructorMethods = (app) => {
 	app.use("/recipes", recipesRoute);

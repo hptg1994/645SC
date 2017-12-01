@@ -6,7 +6,7 @@ const uuid = require('node-uuid');
 let exportedMethods = {
     getAllPosts() {
         return posts().then((postCollection) => {
-            return postCollection.find({}).toArray();
+            return postCollection.find({});
         });
     },
     getPostsByTag(tag) {

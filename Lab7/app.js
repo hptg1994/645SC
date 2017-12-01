@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const app = express();
 const configRoutes = require("./routes");
 
+// configRoutes();
+/*！！！！！！！！！！ 以下顺序绝对不能换！！！！！！！！！！！ */
 app.use(bodyParser.json());
 configRoutes(app);
 

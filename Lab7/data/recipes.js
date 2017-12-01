@@ -3,10 +3,9 @@ const recipes = mongoCollections.RecipesAndComment;
 const uuid = require('node-uuid');
 
 let exportedMethods = {
-    
     getAllRecipes() {
         return recipes().then((recipesCollections) => {
-            return recipesCollections.find({}, {}).toArray();
+            return recipesCollections.find({}).toArray();
         });
     },
     // This is a fun new syntax that was brought forth in ES6, where we can define
@@ -52,7 +51,21 @@ let exportedMethods = {
         });
     },
 
-    updateRecipes(id, updateRecipes) {
+    updateRecipes(id,steps){
+        return recipes().then((currentRecipies) => {
+            return currentRecipies.updateOne({_id:id},{$set:{"steps":steps}}).then(() => {
+                return this.getRecipesById(id)
+            })
+        })
+
+        /* return this.getRecipesById(id).then((currentRecipies) => {
+            return currentRecipies.updateOne({_id:id},{$set:{"steps":steps}}).then(() => {
+                return this.getRecipesById(id);
+            });
+        }); */
+    }
+
+    /* updateRecipes(id, updateRecipes) {
         return this.getRecipesById(id).then((currentRecipes) => {
             let RecipesUpdateInfo = {
                 title: updateRecipes.title,
@@ -72,7 +85,7 @@ let exportedMethods = {
                 });
             });
         });
-    }
+    } */
 }
 
 module.exports = exportedMethods;

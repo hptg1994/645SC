@@ -25,6 +25,7 @@ readTeamFile("the-c-team2.json",(error,data)=>{
 });
 */
 
+//重写 readJson
 jsonFile.readJson("the-c-team.json", (error, asObject) => {
     if (error) throw error;
 

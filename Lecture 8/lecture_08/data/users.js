@@ -12,9 +12,11 @@ let exportedMethods = {
     // methods on an object with this shorthand!
     getUserById(id) {
         return users().then((userCollection) => {
-            return userCollection.findOne({ _id: id }).then((user) => {
+            return userCollection.findOne({
+                _id: id
+            }).then((user) => {
                 if (!user) throw "User not found";
-                
+
                 return user;
             });
         });
@@ -37,7 +39,9 @@ let exportedMethods = {
     },
     removeUser(id) {
         return users().then((userCollection) => {
-            return userCollection.removeOne({ _id: id }).then((deletionInfo) => {
+            return userCollection.removeOne({
+                _id: id
+            }).then((deletionInfo) => {
                 if (deletionInfo.deletedCount === 0) {
                     throw (`Could not delete user with id of ${id}`)
                 }
@@ -51,31 +55,38 @@ let exportedMethods = {
                 lastName: updatedUser.lastName
             };
 
-            let updateCommand = { 
+            let updateCommand = {
                 $set: updatedUser
             };
 
-            return userCollection.updateOne({ _id: id }, updateCommand).then(() => {
+            return userCollection.updateOne({
+                _id: id
+            }, updateCommand).then(() => {
                 return this.getUserById(id);
             });
         });
     },
     addPostToUser(userId, postId, postTitle) {
-        return this.getUserById(id).then((currentUser) => {
-
-            return userCollection.updateOne({ _id: id }, {
-                $addToSet: {
-                    posts: {
-                        id: postId,
-                        title: postTitle
+        return users().then((userCollection) => {
+            this.getUserById(userId).then((currentUser) => {
+                return userCollection.updateOne({
+                    _id: userId
+                }, {
+                    $addToSet: {
+                        posts: {
+                            id: postId,
+                            title: postTitle
+                        }
                     }
-                }
+                });
             });
         });
     },
     removePostFromUser(userId, postId) {
         return this.getUserById(id).then((currentUser) => {
-            return userCollection.updateOne({ _id: id }, {
+            return userCollection.updateOne({
+                _id: id
+            }, {
                 $pull: {
                     posts: {
                         id: postId

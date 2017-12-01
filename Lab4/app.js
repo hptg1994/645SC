@@ -40,7 +40,7 @@ const main = async() => {
     });
 
     // To TA : If you want to remove my database from your MongoDB, please uncomment the below statement
-    // await db.dropCollection('Pintaigao_He_lab4');
+    await db.dropCollection('Pintaigao_He_lab4');
     db.close();
 }
 

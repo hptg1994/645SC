@@ -4,7 +4,7 @@ let configRoutes = require("./routes");
 
 // configRoutes(app);
 //这个方法是直接module.export一个方法的时候使用的
-configRoutes.constructorMethod(app);
+configRoutes(app);
 
 app.listen(3000, () => {
     console.log("We've now got a server!");

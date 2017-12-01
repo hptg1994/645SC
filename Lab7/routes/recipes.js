@@ -5,6 +5,7 @@ const recipeData = data.recipes;
 
 router.get("/", (req, res) => {
 	recipeData.getAllRecipes().then((recipes) => {
+		// console.log(recipes);
 		res.json(recipes);
 	});
 });

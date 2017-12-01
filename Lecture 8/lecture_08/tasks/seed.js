@@ -12,11 +12,11 @@ dbConnection().then(db => {
         const id = phil._id;
 
         return posts
-            .addPost("Hello, class!", "Today we are creating a blog!", [], id)
-            .then(() => {
+            .addPost("Hello, class!", "Today we are creating a blog!", [], id).then((poster) => {
+                users.addPostToUser(id, poster._id, poster.title);
                 return posts.addPost("Using the seed", "We use the seed to have some initial data so we can just focus on servers this week", [], id);
             })
-            .then(() => { 
+            .then(() => {
                 return posts.addPost("Using routes", "The purpose of today is to simply look at some GET routes", [], id);
             });
     }).then(() => {

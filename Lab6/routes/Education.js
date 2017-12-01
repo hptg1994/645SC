@@ -17,7 +17,8 @@ let Eduction = [{
 ];
 
 router.get("/",(request,result) => {
-    result.json(Eduction);
+    result.render(Eduction);
+    // result.json(Education);
 });
 
 module.exports = router;

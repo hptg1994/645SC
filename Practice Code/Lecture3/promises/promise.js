@@ -4,17 +4,17 @@ let itemSet = () => {
 	let itemCount = 1;
 
 	let items = [{
-		id: itemCount++,
-		item: 'Sword of Truth'
-	},
-	{
-		id: itemCount++,
-		item: 'Book of Wisdom'
-	},
-	{
-		id: itemCount++,
-		item: 'Potion of Healing'
-	}
+			id: itemCount++,
+			item: 'Sword of Truth'
+		},
+		{
+			id: itemCount++,
+			item: 'Book of Wisdom'
+		},
+		{
+			id: itemCount++,
+			item: 'Potion of Healing'
+		}
 	];
 	/*So what is a Promise means: If teacher said:I promise we will be happy with the final grade, in regardless of anythings we have done,And he
 	will fulfill his promise by giving the Grade A to us,If he dont fulfill his promies, we still will getting the result,but we want to reject it.
@@ -38,7 +38,7 @@ let itemSet = () => {
 		getItem: () => {
 			return new Promise((fulfill, reject) => {
 				setTimeout(() => {
-					if (items.length > 0) fulfill(items.shift());  //items.shift() 表示remove first item from the array and return it.
+					if (items.length > 0) fulfill(items.shift()); //items.shift() 表示remove first item from the array and return it.
 					reject('No items left!');
 				}, 600);
 			});
@@ -46,8 +46,8 @@ let itemSet = () => {
 	};
 };
 
-/*
-//正确的程序代码
+
+/* // 这个写法是没有用的，只有getItem后马上then,才能输出getItem 的东西，否则只会是 Promise{<pending>}
 let firstItemSet = itemSet();
 let firstChain = firstItemSet.getItem();
 firstChain.then((firstItem) => {
@@ -57,13 +57,12 @@ firstChain.then((firstItem) => {
 }).then((sencondItem) => {
 	console.log("You got a second item!");
 	console.log(sencondItem);
-	return sencondItem;
+	return firstItemSet.getItem();
 }).then((lastItemReceive) => {
 	console.log("the last item received was:");
 	console.log(lastItemReceive);
 });
-console.log(firstChain);
-*/
+console.log(firstChain); */
 
 /* function .then, is a properity/function of the promise, it takes at least one call back,the first call back is what to do if 
 the promise is fulfill,the second will be catching a error in case the promise won't fulfill 

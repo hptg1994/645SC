@@ -4,7 +4,7 @@ const recipeData = data.recipes;
 const commentData = data.comments;
 
 //dbConnection() 只是作为一个幌子，不仅链接MongoDB，而且也带动了Promise的用法
-/* dbConnection()
+dbConnection()
 	.then((db) => {
 		return db.dropDatabase().then(() => {
 				return dbConnection;
@@ -40,9 +40,9 @@ const commentData = data.comments;
 	})
 	.catch(error => {
 		console.log(error);
-	}); */
+	});
 
-let DBConnection = undefined;
+/* let DBConnection = undefined;
 dbConnection().then((db) => {
 		DBConnection = db;
 		return db.dropDatabase().then(() => {
@@ -76,4 +76,4 @@ dbConnection().then((db) => {
 		console.log("done with seeding");
 	}).then(() => {
 		DBConnection.close();
-	});
+	}); */

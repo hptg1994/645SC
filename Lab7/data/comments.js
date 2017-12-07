@@ -6,24 +6,18 @@ let exportedMethods = {
     getCommentByCommentId(id) {
         return comments().then((commentCollection) => {
             return commentCollection
-                .findOne({
-                    comments: {
-                        $elemMatch: {
-                            _id: id
-                        }
-                    }
-                });
+                .findOne({comments: {$elemMatch: {_id: id}}});
         }).then(recipe => {
             let comment = recipe.comments.find((comment) => {
                 return comment._id == id
             });
-            return {
+            return comment/* {
                 _id: id,
                 recipeId: recipe._id,
                 recipeTitle: recipe.title,
                 poster: comment.poster,
                 comment: comment.comment
-            }
+            } */
         }).catch((error) => {
             throw "Can't not find this comment";
         })
@@ -35,7 +29,8 @@ let exportedMethods = {
                 _id: id
             }).then((recipe) => {
                 let comment = recipe.comments;
-                let showingComment = [];
+                return comment;
+                /* let showingComment = [];
                 for (let i = 0; i < comment.length; i++) {
                     showingComment.push({
                         _id: comment[i]._id,
@@ -45,7 +40,7 @@ let exportedMethods = {
                         comment: comment[i].comment
                     });
                 }
-                return showingComment;
+                return showingComment; */
             }).catch((error) => {
                 throw "Can't get this comment from recipes";
             })

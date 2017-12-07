@@ -6,7 +6,7 @@ function checkIsProperNumber(val, variableName) {
 
 module.exports = {
     description: "This is a calculator for CS-546",
-    divideTwoNumbers: (numerator, denominator) => {
+    divideTwoNumbers(numerator, denominator){
         checkIsProperNumber(numerator, "numerator");
         checkIsProperNumber(denominator, "denominator");
 
@@ -16,6 +16,16 @@ module.exports = {
 
         return numerator / denominator;
     },
+    /* divideTwoNumbers: (numerator, denominator) => {
+        checkIsProperNumber(numerator, "numerator");
+        checkIsProperNumber(denominator, "denominator");
+
+        if (denominator === 0) {
+            throw "denominator cannot be 0";
+        }
+
+        return numerator / denominator;
+    }, */
     addTwoNumbers: (num1, num2) => {
         checkIsProperNumber(num1, "first number");
         checkIsProperNumber(num2, "second number");

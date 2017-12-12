@@ -11,9 +11,10 @@
   "author": "Pintaigao He",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "mongodb": "^2.2.24",
-    "node-uuid": "^1.4.7",
-    "body-parser": "^1.15.2"
+    "mongoose": "^4.13.7",
+    "node-uuid": "^1.4.7"
   }
 }
